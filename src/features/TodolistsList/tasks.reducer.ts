@@ -1,9 +1,16 @@
-import {TaskPriorities, TaskStatuses, TaskType, todolistsAPI, UpdateTaskModelType} from "api/todolists-api";
-import {AppDispatch, AppRootStateType, AppThunk} from "app/store";
+import {
+    CreateTaskType,
+    TaskPriorities,
+    TaskStatuses,
+    TaskType,
+    todolistsAPI,
+    UpdateTaskModelType
+} from "api/todolists-api";
+import {AppThunk} from "app/store";
 import {handleServerAppError, handleServerNetworkError} from "utils/error-utils";
 import {appActions} from "app/app.reducer";
 import {todolistsActions} from "features/TodolistsList/todolists.reducer";
-import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {clearTasksAndTodolists} from "common/actions/common.actions";
 import {createAppAsyncThunk} from "../../utils/create-app-async-thunk";
 
@@ -61,7 +68,6 @@ const slice = createSlice({
     },
 });
 
-
 // thunks
 
 const fetchTasks = createAppAsyncThunk<{
@@ -81,14 +87,11 @@ const fetchTasks = createAppAsyncThunk<{
     }
 })
 
-const addTask = createAppAsyncThunk<{ task: TaskType }, {
-    todolistId: string,
-    title: string
-}>(`${slice.name}/addTask`, async (arg, thunkAPI) => {
+const addTask = createAppAsyncThunk<{ task: TaskType }, CreateTaskType>(`${slice.name}/addTask`, async (arg, thunkAPI) => {
     const {dispatch, rejectWithValue} = thunkAPI
     try {
         dispatch(appActions.setAppStatus({status: "loading"}));
-        const res = await todolistsAPI.createTask(arg.todolistId, arg.title)
+        const res = await todolistsAPI.createTask(arg)
         if (res.data.resultCode === 0) {
             const task = res.data.data.item;
             dispatch(appActions.setAppStatus({status: "succeeded"}));

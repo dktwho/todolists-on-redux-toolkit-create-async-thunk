@@ -31,12 +31,10 @@ const slice = createSlice({
             .addCase(fetchTasks.fulfilled, (state, action) => {
                 state[action.payload.todolistId] = action.payload.tasks;
             })
-
             .addCase(addTask.fulfilled, (state, action) => {
                 const tasks = state[action.payload.task.todoListId];
                 tasks.unshift(action.payload.task);
             })
-
             .addCase(updateTask.fulfilled, (state, action) => {
                 const tasks = state[action.payload.todolistId];
                 const index = tasks.findIndex((t) => t.id === action.payload.taskId);
@@ -44,8 +42,6 @@ const slice = createSlice({
                     tasks[index] = {...tasks[index], ...action.payload.domainModel};
                 }
             })
-
-
             .addCase(todolistsActions.addTodolist, (state, action) => {
                 state[action.payload.todolist.id] = [];
             })

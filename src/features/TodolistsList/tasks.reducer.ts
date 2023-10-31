@@ -73,7 +73,7 @@ const fetchTasks = createAppAsyncThunk<{
         const tasks = res.data.items;
         dispatch(appActions.setAppStatus({status: "succeeded"}));
         return {tasks, todolistId}
-    } catch (error: any) {
+    } catch (error) {
         handleServerNetworkError(error, dispatch)
         return rejectWithValue(null)
     }

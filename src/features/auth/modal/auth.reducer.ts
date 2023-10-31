@@ -4,8 +4,8 @@ import { AppThunk } from "app/store";
 import { appActions } from "app/app.reducer";
 import { clearTasksAndTodolists } from "common/actions/common.actions";
 import { handleServerNetworkError } from "common/utils";
-import {authAPI} from "./authApi";
-import {LoginParamsType} from "./authApi.types";
+import {authAPI} from "../api/authApi";
+import {LoginParamsType} from "../api/authApi.types";
 
 const slice = createSlice({
   name: "auth",

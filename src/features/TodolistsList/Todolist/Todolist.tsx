@@ -3,11 +3,11 @@ import {Task} from "./Task/Task";
 import {FilterValuesType, TodolistDomainType} from "features/TodolistsList/todolists.reducer";
 import {Button, IconButton} from "@mui/material";
 import {Delete} from "@mui/icons-material";
-import {EditableSpan} from "components/EditableSpan/EditableSpan";
 import {AddItemForm} from "components/AddItemForm/AddItemForm";
 import {TaskStatuses, TaskType} from "api/todolists-api";
 import {useAppDispatch} from "../../../hooks/useAppDispatch";
 import { tasksThunks } from "../tasks.reducer";
+import { EditableSpan } from "components";
 
 type PropsType = {
   todolist: TodolistDomainType;

@@ -13,8 +13,7 @@ export const todolistsAPI = {
         return promise;
     },
     deleteTodolist(id: string) {
-        const promise = instance.delete<ResponseType>(`todo-lists/${id}`);
-        return promise;
+        return instance.delete<ResponseType>(`todo-lists/${id}`);
     },
     updateTodolist(id: string, title: string) {
         const promise = instance.put<ResponseType>(`todo-lists/${id}`, {title: title});

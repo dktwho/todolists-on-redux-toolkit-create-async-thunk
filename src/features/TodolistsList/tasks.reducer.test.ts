@@ -188,14 +188,15 @@ test("propertry with todolistId should be deleted", () => {
 });
 
 test("empty arrays should be added when we set todolists", () => {
-    const action = todolistsActions.setTodolists({
+
+    const actions = todolistsThunks.fetchTodolists.fulfilled({
         todolists: [
             {id: "1", title: "title 1", order: 0, addedDate: ""},
             {id: "2", title: "title 2", order: 0, addedDate: ""},
-        ],
-    });
+        ]
+    }, 'requestId')
 
-    const endState = tasksReducer({}, action);
+    const endState = tasksReducer({}, actions);
 
     const keys = Object.keys(endState);
 

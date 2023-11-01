@@ -1,7 +1,6 @@
 import React, {useCallback, useEffect} from "react";
 import {useSelector} from "react-redux";
 import {
-    fetchTodolistsTC,
     FilterValuesType,
     todolistsActions, todolistsThunks,
 } from "features/TodolistsList/todolists.reducer";
@@ -31,8 +30,7 @@ export const TodolistsList: React.FC<PropsType> = ({demo = false}) => {
         if (demo || !isLoggedIn) {
             return;
         }
-        const thunk = fetchTodolistsTC();
-        dispatch(thunk);
+        dispatch(todolistsThunks.fetchTodolists());
     }, []);
 
     const removeTask = useCallback(function (taskId: string, todolistId: string) {

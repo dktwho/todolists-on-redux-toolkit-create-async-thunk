@@ -15,8 +15,8 @@ export const todolistsAPI = {
     deleteTodolist(id: string) {
         return instance.delete<ResponseType>(`todo-lists/${id}`);
     },
-    updateTodolist(id: string, title: string) {
-        const promise = instance.put<ResponseType>(`todo-lists/${id}`, {title: title});
+    updateTodolist(arg: UpdateTodoArgType) {
+        const promise = instance.put<ResponseType>(`todo-lists/${arg.todolistId}`, {title: arg.title});
         return promise;
     },
     getTasks(todolistId: string) {
@@ -51,6 +51,11 @@ export type UpdateTaskArgType = {
     taskId: string,
     domainModel: UpdateDomainTaskModelType,
     todolistId: string
+}
+
+export type UpdateTodoArgType = {
+    todolistId: string
+    title: string
 }
 
 export type TodolistType = {

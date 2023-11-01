@@ -5,19 +5,16 @@ import {TaskPriorities, TaskStatuses} from "../../common/enums/enums";
 
 export const todolistsAPI = {
     getTodolists() {
-        const promise = instance.get<TodolistType[]>("todo-lists");
-        return promise;
+        return instance.get<TodolistType[]>("todo-lists");
     },
     createTodolist(title: string) {
-        const promise = instance.post<ResponseType<{ item: TodolistType }>>("todo-lists", {title: title});
-        return promise;
+        return instance.post<ResponseType<{ item: TodolistType }>>("todo-lists", {title: title});
     },
     deleteTodolist(id: string) {
         return instance.delete<ResponseType>(`todo-lists/${id}`);
     },
     updateTodolist(arg: UpdateTodoArgType) {
-        const promise = instance.put<ResponseType>(`todo-lists/${arg.todolistId}`, {title: arg.title});
-        return promise;
+        return instance.put<ResponseType>(`todo-lists/${arg.todolistId}`, {title: arg.title});
     },
     getTasks(todolistId: string) {
         return instance.get<GetTasksResponse>(`todo-lists/${todolistId}/tasks`);
